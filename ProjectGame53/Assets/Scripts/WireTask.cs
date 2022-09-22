@@ -10,6 +10,10 @@ public class WireTask : MonoBehaviour {
 
     public List<Wire> _rightWires = new List<Wire>(); // New list of rightWires of type Wire
 
+    public Wire CurrentDraggedWire;
+
+    public Wire CurrentHoveredWire;
+
     private List<Color> _availableColors; // Unitialised list of colors to be used
 
     private List<int> _availableLeftWireIndex; // Unitialised list of numbers which will assist in random sequence generation
@@ -45,6 +49,20 @@ public class WireTask : MonoBehaviour {
             _availableColors.Remove(pickedColor);
             _availableLeftWireIndex.RemoveAt(pickedLeftWireIndex);
             _availableRightWireIndex.RemoveAt(pickedRightWireIndex);
+        }
+    }
+
+    private void Update(){
+        int successfulWires = 0;
+        for (int i = 0; i < _rightWires.Count; i++) {
+            if(_rightWires[i].IsSuccess){
+                successfulWires++;
+            }
+        }
+        if(successfulWires >= _rightWires.Count) {
+            Debug.Log("TASK COMPLETE");
+        } else {
+            Debug.Log("TASK FAILED");
         }
     }
 }
