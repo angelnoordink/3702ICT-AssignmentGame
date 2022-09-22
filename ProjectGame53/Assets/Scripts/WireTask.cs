@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class WireTask : MonoBehaviour {
 
@@ -61,8 +63,10 @@ public class WireTask : MonoBehaviour {
         }
         if(successfulWires >= _rightWires.Count) {
             Debug.Log("TASK COMPLETE");
+            SceneManager.LoadSceneAsync("Library");
         } else {
             Debug.Log("TASK FAILED");
         }
     }
 }
+
