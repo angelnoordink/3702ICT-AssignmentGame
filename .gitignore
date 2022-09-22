@@ -55,6 +55,9 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+# Test Builds
+**/GGHGame/*.app
+
 # Crashlytics generated file
 crashlytics-build.properties
 
