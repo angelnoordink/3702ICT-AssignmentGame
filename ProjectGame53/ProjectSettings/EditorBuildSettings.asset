@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Library.unity
     guid: 7c18b49f9543e6541b760e5d3ae2b805
+  - enabled: 1
+    path: Assets/Scenes/Minigame-Quiz.unity
+    guid: 6b4d8ced0b72b419aa5a1e018827e732
   m_configObjects: {}

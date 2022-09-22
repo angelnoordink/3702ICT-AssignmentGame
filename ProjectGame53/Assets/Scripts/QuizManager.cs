@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class QuizManager : MonoBehaviour
 {
     
+    [SerializeField] private string Game;
+
     public List<QandA> QnA;
 
     public GameObject[] options;
@@ -64,7 +67,8 @@ public class QuizManager : MonoBehaviour
         }
         else 
         {
-            // Change Scene
+            SceneManager.LoadScene(Game);
+
         }
 
     }
