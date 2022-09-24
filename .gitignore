@@ -53,7 +53,9 @@ sysinfo.txt
 
 # Builds
 *.apk
+*.aab
 *.unitypackage
+*.app
 
 # Test Builds
 **/GGHGame/*.app
