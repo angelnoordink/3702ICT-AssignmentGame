@@ -8,21 +8,17 @@ public class changeScene : MonoBehaviour {
     [SerializeField] private string Minigame;
     [SerializeField] private GameObject uiElement;
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerStay(Collider other) {
         if(other.CompareTag("Player")) {
             // Make a UI Appear
             uiElement.SetActive(true);
 
             // Button press
-            if(Input.GetKeyDown(KeyCode.E)) {
-                SceneManager.LoadScene(Minigame);
-                Debug.Log("E key was pressed.");
-            }
+            // if(Input.GetKeyDown(KeyCode.J)) {
+                // SceneManager.LoadScene(Minigame);
+                Debug.Log("J key was pressed.");
+            // }
 
-            if (Input.GetKeyUp(KeyCode.E)) {
-                SceneManager.LoadScene(Minigame);
-                Debug.Log("E key was pressed.");
-            }
             
         }
     }
@@ -31,6 +27,10 @@ public class changeScene : MonoBehaviour {
         if (other.CompareTag("Player")) {
             uiElement.SetActive(false);
         }
+    }
+
+    private void Update(){
+
     }
     
 }
