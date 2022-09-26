@@ -15,7 +15,7 @@ public class changeScene : MonoBehaviour {
 
             // Button press
             // if(Input.GetKeyDown(KeyCode.J)) {
-                // SceneManager.LoadScene(Minigame);
+                SceneManager.LoadScene(Minigame);
                 Debug.Log("J key was pressed.");
             // }
 
