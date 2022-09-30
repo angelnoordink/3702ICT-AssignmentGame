@@ -64,7 +64,7 @@ public class WireTask : MonoBehaviour {
             Debug.Log("TASK COMPLETE");
             SceneManager.LoadSceneAsync("Library");
         } else {
-            Debug.Log("TASK FAILED");
+            // Debug.Log("TASK FAILED");
         }
     }
 }
