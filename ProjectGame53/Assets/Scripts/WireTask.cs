@@ -26,7 +26,6 @@ public class WireTask : MonoBehaviour {
 
     // Start is called before the first frame update
     private void Start() {
-
         _availableColors = new List<Color>(_wireColors); // Assign new list of colors
         _availableLeftWireIndex = new List<int>(); // This list will contain numbers for the total count of the wires
         _availableRightWireIndex = new List<int>();
