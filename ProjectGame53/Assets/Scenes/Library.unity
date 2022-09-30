@@ -8847,7 +8847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9579096, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
       propertyPath: m_CullingMode
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11444856, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
       propertyPath: m_Enabled
