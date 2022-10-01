@@ -121,13 +121,7 @@ public class SimpleFSM : MonoBehaviour
             // Enter captured events here
         }
     }
-
-    void OnAnimatorMove () {
-        // Update position based on animation movement using navigation surface height
-        Vector3 position = animator.rootPosition;
-        position.y = nav.nextPosition.y;
-        transform.position = position;
-    }
+    
 
 	void OnDrawGizmos () {
 		Gizmos.color = Color.red;
