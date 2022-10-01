@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using System.Collections.Generic;
+using UnityStandardAssets.CrossPlatformInput;
+
 
 public class SimpleFSM : MonoBehaviour 
 {
@@ -13,34 +16,33 @@ public class SimpleFSM : MonoBehaviour
     }
 
     [SerializeField] private Waypoints waypoints;
-    [SerializeField] private float distanceThreshold = 2.0f;
-
+    [SerializeField] private float distanceThreshold = 1.0f;
     private Transform currentWaypoint;
-
-    public GameObject[] waypointList;
-    public float speed = 10.0f;
+    private Animator animator;
 
     private NavMeshAgent nav;
 
 	// Current state that the NPC is reaching
 	public FSMState curState;
+     public float speed = 20.0f;
 
 	protected Transform playerTransform;// Player Transform
-    private Rigidbody _rigidbody; // The rigidbody of the chaser
+    public float viewRadius;
+    public LayerMask targetMask;
 
 	// Ranges for chase and capture
 	public float chaseRange = 5.0f;
 	public float captureRange = 2.0f;
     public float captureStopRange = 1.0f;
 
+
     // Initialise
 	void Start() {
 
         nav = GetComponent<NavMeshAgent>();
-        _rigidbody = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator> ();
 
         currentWaypoint = waypoints.GetNextWaypoint(currentWaypoint);
-
         curState = FSMState.Patrol;
 
         // Get the target enemy(Player)
@@ -61,17 +63,20 @@ public class SimpleFSM : MonoBehaviour
             case FSMState.Chase: UpdateChaseState(); break;
             case FSMState.Capture: UpdateCaptureState(); break;
         }
+
+        if (curState == FSMState.Patrol) {
+            nav.destination = currentWaypoint.position;
+
+            if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold) {
+                currentWaypoint = waypoints.GetNextWaypoint(currentWaypoint);
+                nav.destination = currentWaypoint.position;
+            }
+        }
     }
 
 	// Patrol
     protected void UpdatePatrolState() {
-
-        nav.destination = currentWaypoint.position;
-
-        if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold) {
-            currentWaypoint = waypoints.GetNextWaypoint(currentWaypoint);
-            nav.destination = currentWaypoint.position;
-        }
+        
 
         // Calculate Distance between player tank and target
         float distance = Vector3.Distance(transform.position, playerTransform.position);
@@ -86,15 +91,10 @@ public class SimpleFSM : MonoBehaviour
 
     // Chase State
     protected void UpdateChaseState() {
-
-		// NavMeshAgent move code goes here
-        nav.destination = playerTransform.position;
-
-		// Transitions
         // Check the distance with player tank
         // When the distance is near, transition to capture state
 		float dist = Vector3.Distance(transform.position, playerTransform.position);
-		if (dist <= captureRange) {
+		if (dist < captureRange) {
             curState = FSMState.Capture;
         }
         // Go back to patrol is it become too far
@@ -114,17 +114,27 @@ public class SimpleFSM : MonoBehaviour
 			curState = FSMState.Chase;
 		}
         // Transition to patrol if the tank is too far
-        else if (dist >= chaseRange) {
+        else if (dist > chaseRange) {
 			curState = FSMState.Patrol;
 		}
-        else if (dist < captureStopRange) {
-            // nav.destination = transform.position;
+        else if (dist <= captureStopRange) {
+            // Enter captured events here
         }
+    }
+
+    void OnAnimatorMove () {
+        // Update position based on animation movement using navigation surface height
+        Vector3 position = animator.rootPosition;
+        position.y = nav.nextPosition.y;
+        transform.position = position;
     }
 
 	void OnDrawGizmos () {
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position, captureRange);
+
+        Gizmos.color = Color.yellow;
+		Gizmos.DrawWireSphere(transform.position, captureStopRange);
 	}
 
 }
