@@ -7,25 +7,26 @@ public class PatrolState : StateMachineBehaviour {
     float timer;
     List<Transform> wayPoints = new List<Transform>();
     NavMeshAgent agent;
+    FieldOfView view;
     Transform player;
-    float chaseRange = 3;
+    float viewRadius;
+    float viewAngle;
+    bool isInSight;
+    // float chaseRange = 3.5f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = animator.GetComponent<NavMeshAgent>();
+        agent.speed = 1.5f;
         timer = 0; 
         GameObject go = GameObject.FindGameObjectWithTag("WayPoints");
         foreach (Transform t in go.transform) {
             wayPoints.Add(t);
         }
+        view = animator.GetComponent<FieldOfView>();
         agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
-
-        float distance = Vector3.Distance(player.position, animator.transform.position);
-        if(distance < chaseRange) {
-            animator.SetBool("isChasing", true);
-        }
 
     }
 
@@ -35,15 +36,24 @@ public class PatrolState : StateMachineBehaviour {
             agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
         }
 
+        bool isInSight = CanSeePlayer(view.viewRadius, view.viewAngle, agent);
+        float distance = Vector3.Distance(player.position, animator.transform.position);
         timer += Time.deltaTime;
-        if (timer > 10) {
-            animator.SetBool("isPatrolling", false);
+
+        if (timer > 3) {
+            animator.SetBool("isPatrolling", true);
         }
+
+        if (isInSight) {
+            animator.SetBool("isChasing", true);
+        } 
+    
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         agent.SetDestination(agent.transform.position);
+        animator.SetBool("isPatrolling", false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
@@ -54,5 +64,24 @@ public class PatrolState : StateMachineBehaviour {
     // OnStateIK is called right after Animator.OnAnimatorIK()
     override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
        // Implement code that sets up animation IK (inverse kinematics)
+    }
+
+    public bool CanSeePlayer(float viewRadius, float viewAngle, NavMeshAgent agent){
+        RaycastHit hit;
+        Transform player = GameObject.FindGameObjectWithTag("Player").transform;
+        Vector3 rayDirection = player.transform.position - agent.transform.position;
+
+    
+        if((Vector3.Angle(rayDirection, agent.transform.forward)) <= viewAngle * 0.5f){ // Detect if player is within the field of view
+            if (Physics.Raycast (agent.transform.position, rayDirection, out hit, viewRadius)) {
+                if (hit.transform.tag == "Player") {
+                    Debug.Log("Can see player");
+                    return true;
+                } else{
+                    Debug.Log("Can not see player");
+                    return false;
+                }
+            } else { return false;}
+        } else { return false; }
     }
 }

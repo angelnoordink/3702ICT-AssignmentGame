@@ -10,7 +10,8 @@ public class ChaseState : StateMachineBehaviour {
     float viewRadius;
     float viewAngle;
     bool isInSight;
-    // float attackRange = 1;
+    float chaseRange = 3.5f;
+    float attackRange = 1f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -22,16 +23,23 @@ public class ChaseState : StateMachineBehaviour {
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+        agent.SetDestination(player.position);
         bool isInSight = CanSeePlayer(view.viewRadius, view.viewAngle, agent);
+        float distance = Vector3.Distance(player.position, animator.transform.position);
 
-        if (isInSight) {
-            agent.SetDestination(player.position);
+    
+        if (distance > chaseRange){
+            animator.SetBool("isChasing", false);
+        }
+        if (distance < attackRange) {
+            animator.SetBool("isAttacking", true);
         }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-       
+        // agent.SetDestination(player.position);
+        animator.SetBool("isChasing", false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
@@ -63,3 +71,4 @@ public class ChaseState : StateMachineBehaviour {
         } else { return false; }
     }
 }
+
