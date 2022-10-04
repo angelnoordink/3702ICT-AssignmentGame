@@ -16,15 +16,6 @@ public class changeScene : MonoBehaviour {
             uiElement.SetActive(true);
             EnteredCollider = true;
             CurrentMinigame = Minigame;
-
-            // SceneManager.LoadScene(Minigame);
-
-            // Button press
-            // if(Input.GetKeyDown(KeyCode.J)) {
-            //     SceneManager.LoadScene(Minigame);
-            //     Debug.Log("J key was pressed.");
-            // }
-            
         }
     }
 

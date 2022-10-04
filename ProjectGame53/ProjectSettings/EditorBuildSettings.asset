@@ -9,11 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 554d5d3e3477e4295b344b90e32124da
   - enabled: 1
-    path: Assets/Scenes/Tutorial.unity
-    guid: fd3c730521d214ddbb61b31393edf495
-  - enabled: 1
     path: Assets/Scenes/Library.unity
     guid: 7c18b49f9543e6541b760e5d3ae2b805
+  - enabled: 1
+    path: Assets/Scenes/Instructions.unity
+    guid: fd3c730521d214ddbb61b31393edf495
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: c626061f819d64d6f9552679a476730a
+  - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: 743237d26c95649c0b03da8e63e00730
   - enabled: 1
     path: Assets/Scenes/WireGame.unity
     guid: 8624043a7d25047979ce65628550573c
