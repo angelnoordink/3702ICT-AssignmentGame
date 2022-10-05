@@ -61,7 +61,7 @@ public class IdleState : StateMachineBehaviour {
                Debug.Log("Can see player");
                return true;
             } else{
-               Debug.Log("Can not see player");
+               // Debug.Log("Can not see player");
                return false;
             }
          } else { return false;}

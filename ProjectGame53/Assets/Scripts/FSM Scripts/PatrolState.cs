@@ -93,7 +93,7 @@ public class PatrolState : StateMachineBehaviour {
         if((Vector3.Angle(rayDirection, agent.transform.forward)) <= viewAngle * 0.5f){ // Detect if player is within the field of view
             if (Physics.Raycast (agent.transform.position, rayDirection, out hit, viewRadius)) {
                 if (hit.transform.tag == "Player") {
-                    // Debug.Log("Can see player");
+                    Debug.Log("Can see player");
                     return true;
                 } else{
                     // Debug.Log("Can not see player");
