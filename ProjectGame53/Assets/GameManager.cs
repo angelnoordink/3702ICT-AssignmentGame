@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour {
     bool gameHasEnded = false;
     // int lives = 3;
     [SerializeField] private GameObject introDialogue;
-    bool gameLost = true;
 
     
     public void EndGame() {
