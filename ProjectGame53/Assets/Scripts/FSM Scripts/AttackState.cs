@@ -5,16 +5,23 @@ using UnityEngine;
 public class AttackState : StateMachineBehaviour{
     float attackRange = 1f;
     Transform player;
+    UnityEngine.AI.NavMeshAgent agent;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        agent = animator.GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+        agent.SetDestination(player.position);
         animator.transform.LookAt(player);
+        
+        FindObjectOfType<GameManager>().EndGame();
+
         float distance = Vector3.Distance(player.position, animator.transform.position);
+
         if (distance > attackRange){
             animator.SetBool("isAttacking", false);
         }
