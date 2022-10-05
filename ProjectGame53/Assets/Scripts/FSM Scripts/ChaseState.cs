@@ -10,7 +10,6 @@ public class ChaseState : StateMachineBehaviour {
     float viewRadius;
     float viewAngle;
     bool isInSight;
-    float chaseRange = 3.5f;
     float attackRange = 1f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -28,7 +27,7 @@ public class ChaseState : StateMachineBehaviour {
         float distance = Vector3.Distance(player.position, animator.transform.position);
 
     
-        if (distance > chaseRange){
+        if (!isInSight){
             animator.SetBool("isChasing", false);
         }
         if (distance < attackRange) {
