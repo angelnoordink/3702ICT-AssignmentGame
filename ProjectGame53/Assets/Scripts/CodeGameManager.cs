@@ -8,6 +8,15 @@ using UnityEngine.SceneManagement;
 
 public class CodeGameManager : MonoBehaviour
 {
+
+    [SerializeField]
+    private AudioClip _musicClip;
+    [SerializeField]
+    private AudioClip _completeClip;
+    [SerializeField]
+    private AudioClip _failClip;
+    private AudioSource _audioSource;
+
     [SerializeField] private string Game;
     public List<Button> buttons;
     public List<Button> shuffledButtons;
@@ -16,10 +25,16 @@ public class CodeGameManager : MonoBehaviour
 
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = _musicClip;
+        _audioSource.Play();
         RestartTheGame();
     }
 
     public void RestartTheGame(){
+         _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = _musicClip;
+        _audioSource.Play();
         counter = 0;
         shuffledButtons = buttons.OrderBy(a => Random.Range(0,100)).ToList(); // Shuffle button numbers
 
@@ -60,22 +75,36 @@ public class CodeGameManager : MonoBehaviour
                 button.interactable = false;
             }
             // If fail wait 2 seconds then restart game
-            yield return new WaitForSeconds(2f);
-            RestartTheGame();
+             yield return new WaitForSeconds(2f);
+            // RestartTheGame();
+            StartCoroutine(fail());
+
 
         } else {
             // Change the scene if win = true 
-            
-           SceneManager.LoadSceneAsync("SuccessScene");
+            StartCoroutine(success());
 
         }
-
 
     }
 
 
 
+        IEnumerator success(){
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = _completeClip;
+        _audioSource.Play();
+        yield return new WaitWhile (()=>_audioSource.isPlaying);
+        SceneManager.LoadSceneAsync("SuccessScene");
+    }
 
+      IEnumerator fail(){
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = _failClip;
+        _audioSource.Play();
+        yield return new WaitWhile (()=>_audioSource.isPlaying);
+        RestartTheGame();
+    }
 
 
 
