@@ -65,7 +65,8 @@ public class CodeGameManager : MonoBehaviour
 
         } else {
             // Change the scene if win = true 
-            SceneManager.LoadSceneAsync("Library");
+            
+           SceneManager.LoadSceneAsync("SuccessScene");
 
         }
 

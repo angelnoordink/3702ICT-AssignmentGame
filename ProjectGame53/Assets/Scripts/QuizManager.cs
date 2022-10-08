@@ -67,7 +67,7 @@ public class QuizManager : MonoBehaviour
         }
         else 
         {
-           SceneManager.LoadSceneAsync("Library");
+           SceneManager.LoadSceneAsync("SuccessScene");
 
         }
 

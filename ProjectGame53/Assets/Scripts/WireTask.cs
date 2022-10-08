@@ -62,7 +62,7 @@ public class WireTask : MonoBehaviour {
         }
         if(successfulWires >= _rightWires.Count) {
             Debug.Log("TASK COMPLETE");
-            SceneManager.LoadSceneAsync("Library");
+            SceneManager.LoadSceneAsync("SuccessScene");
         } else {
             // Debug.Log("TASK FAILED");
         }
