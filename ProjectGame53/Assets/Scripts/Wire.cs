@@ -3,10 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+
+
 
 
 public class Wire : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler  {
 
+    // Create connect audio and failure audio
+   [SerializeField]
+    private AudioClip _connectClip;
+    [SerializeField]
+    private AudioClip _failClip;
+
+    // Initialise audio source
+    private AudioSource _audioSource;
+
+    
     public bool IsLeftWire;
     public Color CustomColor;
 
@@ -18,6 +31,8 @@ public class Wire : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     private bool _isDragStarted = false;
     private WireTask _wireTask;
     public bool IsSuccess = false;
+
+    
 
     private void Awake()
     {
@@ -86,9 +101,22 @@ public class Wire : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             if(_wireTask.CurrentHoveredWire.CustomColor == CustomColor && !_wireTask.CurrentHoveredWire.IsLeftWire) {
                 IsSuccess = true;
                 _wireTask.CurrentHoveredWire.IsSuccess = true;
+            } else {
+                // On fail play sound and reload the game
+                Debug.Log("First else");
+                StartCoroutine(fail());
+                //SceneManager.LoadSceneAsync("WireGame");
             }
         }
         _isDragStarted = false;
         _wireTask.CurrentDraggedWire = null;
+    }
+
+    IEnumerator fail(){
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = _failClip;
+        _audioSource.Play();
+        yield return new WaitWhile (()=>_audioSource.isPlaying);
+        SceneManager.LoadSceneAsync("WireGame");
     }
 }

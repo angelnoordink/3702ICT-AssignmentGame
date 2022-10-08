@@ -39,6 +39,13 @@ public class QuizManager : MonoBehaviour
         generateQuestion();
     }
 
+    public void incorrect()
+    {
+        // Play sound and reload scene on failure
+        
+        SceneManager.LoadSceneAsync("QuizGame");
+    }
+
     void SetAnswers()
     {
         for (int i = 0; i < options.Length; i++)

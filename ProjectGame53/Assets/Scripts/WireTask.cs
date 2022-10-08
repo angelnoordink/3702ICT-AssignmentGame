@@ -2,9 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 
 public class WireTask : MonoBehaviour {
+
+    [SerializeField]
+    private AudioClip _electricityClip;
+    [SerializeField]
+    private AudioClip _connectClip;
+    private AudioSource _audioSource;
 
     public List<Color> _wireColors = new List<Color>(); // New list of type Color
 
@@ -26,6 +34,16 @@ public class WireTask : MonoBehaviour {
 
     // Start is called before the first frame update
     private void Start() {
+
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = _electricityClip;
+        _audioSource.Play();
+        _audioSource.loop = true;
+        
+   
+        
+        
+
         _availableColors = new List<Color>(_wireColors); // Assign new list of colors
         _availableLeftWireIndex = new List<int>(); // This list will contain numbers for the total count of the wires
         _availableRightWireIndex = new List<int>();
@@ -62,10 +80,22 @@ public class WireTask : MonoBehaviour {
         }
         if(successfulWires >= _rightWires.Count) {
             Debug.Log("TASK COMPLETE");
-            SceneManager.LoadSceneAsync("SuccessScene");
+            StartCoroutine(success());
+            this.enabled = false;
         } else {
-            // Debug.Log("TASK FAILED");
+            //Debug.Log("TASK FAILED");
         }
     }
+
+    IEnumerator success(){
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = _connectClip;
+        _audioSource.Play();
+        _audioSource.loop = false;
+        yield return new WaitWhile (()=>_audioSource.isPlaying);
+        SceneManager.LoadSceneAsync("SuccessScene");
+    }
+
+
 }
 
