@@ -35,10 +35,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoseOutcome.unity
     guid: 9810b009a4cb74637a10cb5883309554
-  - enabled: 1
-    path: Assets/Scenes/SuccessScene.unity
-    guid: e19b5d388fea14e0babe2253fc41a481
-  - enabled: 1
-    path: Assets/Scenes/FailureScene.unity
-    guid: e088ad671410642fd95f01b9eaaaa456
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
