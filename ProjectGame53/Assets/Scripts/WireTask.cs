@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
+
 public class WireTask : MonoBehaviour {
+
     [SerializeField]
     private AudioClip _electricityClip;
     [SerializeField]
@@ -13,14 +15,19 @@ public class WireTask : MonoBehaviour {
     private AudioSource _audioSource;
 
     public List<Color> _wireColors = new List<Color>(); // New list of type Color
+
     public List<Wire> _leftWires = new List<Wire>(); // New list of leftWires of type Wire
+
     public List<Wire> _rightWires = new List<Wire>(); // New list of rightWires of type Wire
 
     public Wire CurrentDraggedWire;
+
     public Wire CurrentHoveredWire;
 
     private List<Color> _availableColors; // Unitialised list of colors to be used
+
     private List<int> _availableLeftWireIndex; // Unitialised list of numbers which will assist in random sequence generation
+
     private List<int> _availableRightWireIndex; // Unitialised list of numbers which will assist in random sequence generation
 
     [SerializeField]
@@ -28,6 +35,7 @@ public class WireTask : MonoBehaviour {
 
     // Start is called before the first frame update
     private void Start() {
+
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = _electricityClip;
         _audioSource.Play();
@@ -37,11 +45,12 @@ public class WireTask : MonoBehaviour {
         _availableLeftWireIndex = new List<int>(); // This list will contain numbers for the total count of the wires
         _availableRightWireIndex = new List<int>();
 
-        for (int i = 0; i < _leftWires.Count; i++) {
+        for (int i = 0; i < _leftWires.Count; i++)
+        {
             _availableLeftWireIndex.Add(i);
         }
-
-        for (int i = 0; i < _rightWires.Count; i++) {
+        for (int i = 0; i < _rightWires.Count; i++)
+        {
             _availableRightWireIndex.Add(i);
         }
 
@@ -75,26 +84,26 @@ public class WireTask : MonoBehaviour {
         }
     }
     
-    // Successful completion of mini game function
+// Successful completion of mini game function
     IEnumerator success(){
         miniGameCountSO.minigame_count += 1;
         if(miniGameCountSO.minigame_count == 3){
-            Debug.Log("Game Completed");
-            _audioSource = GetComponent<AudioSource>();
-            _audioSource.clip = _connectClip;
-            _audioSource.Play();
-            _audioSource.loop = false;
-            yield return new WaitWhile (()=>_audioSource.isPlaying);
-            SceneManager.LoadSceneAsync("SuccessScene");
-        } else {
-            Debug.Log("Mini game completed");
-            _audioSource = GetComponent<AudioSource>();
-            _audioSource.clip = _connectClip;
-            _audioSource.Play();
-            _audioSource.loop = false;
-            yield return new WaitWhile (()=>_audioSource.isPlaying);
-            SceneManager.LoadSceneAsync("SuccessScene");
-        }
+                Debug.Log("Game Completed");
+                _audioSource = GetComponent<AudioSource>();
+                _audioSource.clip = _connectClip;
+                _audioSource.Play();
+                _audioSource.loop = false;
+                yield return new WaitWhile (()=>_audioSource.isPlaying);
+                SceneManager.LoadSceneAsync("SuccessScene");
+            } else {
+                Debug.Log("Mini game completed");
+                _audioSource = GetComponent<AudioSource>();
+                _audioSource.clip = _connectClip;
+                _audioSource.Play();
+                _audioSource.loop = false;
+                yield return new WaitWhile (()=>_audioSource.isPlaying);
+                SceneManager.LoadSceneAsync("SuccessScene");
+            }
     }
 }
 

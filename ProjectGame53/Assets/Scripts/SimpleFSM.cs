@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using UnityStandardAssets.CrossPlatformInput;
 
 
-public class SimpleFSM : MonoBehaviour {
-    public enum FSMState {
+public class SimpleFSM : MonoBehaviour 
+{
+    public enum FSMState
+    {
         None,
         Patrol,
         Chase,
@@ -36,6 +38,7 @@ public class SimpleFSM : MonoBehaviour {
 
     // Initialise
 	void Start() {
+
         nav = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator> ();
 
@@ -49,6 +52,8 @@ public class SimpleFSM : MonoBehaviour {
         if(!playerTransform) {
             print("Player doesn't exist.. Please add one with Tag named 'Player'");
         }
+
+        
 
 	}
 
@@ -73,6 +78,8 @@ public class SimpleFSM : MonoBehaviour {
 
 	// Patrol
     protected void UpdatePatrolState() {
+        
+
         // Calculate Distance between player tank and target
         float distance = Vector3.Distance(transform.position, playerTransform.position);
 
@@ -80,6 +87,7 @@ public class SimpleFSM : MonoBehaviour {
         if (distance <= chaseRange) {
             curState = FSMState.Chase;
         }
+
     }
 
 
@@ -95,6 +103,7 @@ public class SimpleFSM : MonoBehaviour {
         else if (dist >= chaseRange) {
 			curState = FSMState.Patrol;
 		}
+		
 	}
 	
 

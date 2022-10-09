@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnswerScript : MonoBehaviour {
+public class AnswerScript : MonoBehaviour
+{
     [SerializeField]
     private AudioClip _correctClip;
     [SerializeField]
@@ -13,15 +14,18 @@ public class AnswerScript : MonoBehaviour {
     public QuizManager quizManager;
 
 
-    public void Answer() {
-        if(isCorrect) {
+    public void Answer()
+    {
+        if(isCorrect)
+        {
             _audioSource = GetComponent<AudioSource>();
             _audioSource.clip = _correctClip;
             _audioSource.Play();
             Debug.Log("correct");
             quizManager.correct();
         }
-        else {
+        else
+        {
             StartCoroutine(fail());
             Debug.Log("false");
         }
