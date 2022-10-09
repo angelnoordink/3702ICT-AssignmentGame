@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu (fileName = "NameTacking", menuName = "NameTracking")]
+[CreateAssetMenu (fileName = "NameTracking", menuName = "NameTracking")]
 
 public class NameTracking : ScriptableObject {
 

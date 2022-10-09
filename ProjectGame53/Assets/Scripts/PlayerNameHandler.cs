@@ -5,17 +5,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class TimerHandler : MonoBehaviour {
-    public float timer = 0;
-    [SerializeField] public EndTimer endTimer;
-    private string timeString;
+public class PlayerNameHandler : MonoBehaviour {
+    public string name = "";
+    [SerializeField] public NameTracking nameTracking;
+
 
     void Start(){
         DontDestroyOnLoad(gameObject);
     }
 
     void Update(){
-        timer += Time.deltaTime;
-        endTimer.timer = timer;
+        name = nameTracking.name;
     }
 }

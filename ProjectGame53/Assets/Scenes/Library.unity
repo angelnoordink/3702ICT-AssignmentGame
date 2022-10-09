@@ -4978,7 +4978,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 0
   endTimer: {fileID: 11400000, guid: 7a30567f9be084b2386e5eaaa543b7a2, type: 2}
-  timeText: {fileID: 1084754614}
 --- !u!4 &113561811
 Transform:
   m_ObjectHideFlags: 0
@@ -81963,6 +81962,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2645168707438236502, guid: 01bf2f6f6ef43c940a7008bd56611e77, type: 3}
   m_PrefabInstance: {fileID: 1920427272}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1922088227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922088229}
+  - component: {fileID: 1922088228}
+  m_Layer: 0
+  m_Name: PlayerNameHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1922088228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922088227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2169daf7458d842b08b120440be1adc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  nameTracking: {fileID: 11400000, guid: c67b40403387c4233b3c12c6cfd90883, type: 2}
+--- !u!4 &1922088229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922088227}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.8167539, y: 0.31761953, z: 9.89048}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1923706737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89843,6 +89888,7 @@ MonoBehaviour:
   timerHandler: {fileID: 113561809}
   miniGameCountHandler: {fileID: 1358056691}
   lastPositionHandler: {fileID: 1621989630}
+  playerNameHandler: {fileID: 1922088227}
   ThirdPersonController: {fileID: 1832634699}
   introDialogue: {fileID: 1874212343}
   librarianCompleteDialogueBox: {fileID: 1606661135}

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     public GameObject timerHandler;
     public GameObject miniGameCountHandler;
     public GameObject lastPositionHandler;
+    public GameObject playerNameHandler;
     public GameObject ThirdPersonController;
 
     [SerializeField] private GameObject introDialogue;
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour {
             timerHandler.SetActive(false);
             miniGameCountHandler.SetActive(false);
             lastPositionHandler.SetActive(false);
+            playerNameHandler.SetActive(false);
 
             librarianCollider.SetActive(false);
             librarianParticles.SetActive(false);
@@ -73,6 +75,7 @@ public class GameManager : MonoBehaviour {
             timerHandler.SetActive(false);
             miniGameCountHandler.SetActive(false);
             lastPositionHandler.SetActive(false);
+            playerNameHandler.SetActive(false);
 
             quizCollider.SetActive(false);
             quizParticles.SetActive(false);
@@ -90,6 +93,7 @@ public class GameManager : MonoBehaviour {
             timerHandler.SetActive(false);
             miniGameCountHandler.SetActive(false);
             lastPositionHandler.SetActive(false);
+            playerNameHandler.SetActive(false);
 
             wiresCollider.SetActive(false);
             wiresParticles.SetActive(false);
@@ -112,13 +116,11 @@ public class GameManager : MonoBehaviour {
     }
 
     public void EndGame() {
-        // Debug.Log(lives);
         if (gameHasEnded == false) {
             gameHasEnded = true;
             Debug.Log("Game Over");
             Debug.Log("Total Time: "+endTimer.timer);
             SceneManager.LoadSceneAsync("LoseOutcome");
-            // Restart();
         }
     }
 
