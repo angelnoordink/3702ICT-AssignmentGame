@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class QuizManager : MonoBehaviour
 {
+    [SerializeField]
+    private AudioClip _correctClip;
+    private AudioSource _audioSource;
     
     [SerializeField] private string Game;
 
@@ -39,6 +42,13 @@ public class QuizManager : MonoBehaviour
         generateQuestion();
     }
 
+    public void incorrect()
+    {
+        // Play sound and reload scene on failure
+
+        SceneManager.LoadSceneAsync("QuizGame");
+    }
+
     void SetAnswers()
     {
         for (int i = 0; i < options.Length; i++)
@@ -67,7 +77,7 @@ public class QuizManager : MonoBehaviour
         }
         else 
         {
-           SceneManager.LoadSceneAsync("Library");
+           SceneManager.LoadSceneAsync("SuccessScene");
 
         }
 
