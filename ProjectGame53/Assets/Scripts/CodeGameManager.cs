@@ -102,7 +102,7 @@ public class CodeGameManager : MonoBehaviour
                 _audioSource.clip = _completeClip;
                 _audioSource.Play();
                 yield return new WaitWhile (()=>_audioSource.isPlaying);
-                SceneManager.LoadSceneAsync("EndScene");
+                SceneManager.LoadSceneAsync("WinOutcome");
             } else {
                 Debug.Log("Mini game completed");
                 _audioSource = GetComponent<AudioSource>();
