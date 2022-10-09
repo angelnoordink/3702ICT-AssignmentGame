@@ -86,6 +86,7 @@ public class CodeGameManager : MonoBehaviour
         } else {
             // Change the scene if win = true 
             miniGameCountSO.minigame_count += 1;
+            Debug.Log(miniGameCountSO.minigame_count);
             StartCoroutine(success());
 
         }

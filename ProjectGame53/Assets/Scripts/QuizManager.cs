@@ -22,6 +22,10 @@ public class QuizManager : MonoBehaviour
 
     public int trigger_counter = 0;
 
+    [SerializeField]
+    public MiniGameCountSO miniGameCountSO;
+
+
 
     private void Start()
     {
@@ -77,8 +81,9 @@ public class QuizManager : MonoBehaviour
         }
         else 
         {
-           SceneManager.LoadSceneAsync("SuccessScene");
-
+            SceneManager.LoadSceneAsync("SuccessScene");
+            miniGameCountSO.minigame_count += 1;
+            Debug.Log(miniGameCountSO.minigame_count);
         }
 
     }
