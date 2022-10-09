@@ -13,6 +13,6 @@ public class TimerHandler : MonoBehaviour
     void Update(){
         
         timer += Time.deltaTime;
-        Debug.Log(timer);
+        //Debug.Log(timer);
     }
 }
