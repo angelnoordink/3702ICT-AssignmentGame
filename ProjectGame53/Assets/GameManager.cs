@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] public EndTimer endTimer;
 
-    public GameObject TimerHandler;
 
     public GameObject ThirdPersonController;
 
@@ -33,7 +32,7 @@ public class GameManager : MonoBehaviour {
         }
         else if(miniGameCountSO.minigame_count == 3){
 
-            endTimer.timer = TimerHandler.timer;
+           endTimer.timer = GameObject.Find("TimerHandler").GetComponent<TimerHandler>().timer;
             if(endTimer.timer > 0){
                 SceneManager.LoadScene("WinOutcome");
             }
