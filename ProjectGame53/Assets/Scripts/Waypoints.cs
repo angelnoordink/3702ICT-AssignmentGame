@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Waypoints : MonoBehaviour
-{
+public class Waypoints : MonoBehaviour {
     [Range(0f, 5f)]
     [SerializeField] private float waypointSize = 1.0f;
 
@@ -27,8 +26,7 @@ public class Waypoints : MonoBehaviour
         }
         if (currentWaypoint.GetSiblingIndex() < transform.childCount - 1) {
             return transform.GetChild(currentWaypoint.GetSiblingIndex() + 1);
-        }
-        else {
+        } else {
             return transform.GetChild(0);
         }
     }

@@ -4,14 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class changeScene : MonoBehaviour {
-
     [SerializeField] private string Minigame;
     [SerializeField] private GameObject uiElement;
     private bool EnteredCollider = false;
     private string CurrentMinigame;
 
     [SerializeField] public LastPosition lastPosition;
-
 
     public GameObject ThirdPersonController;
 

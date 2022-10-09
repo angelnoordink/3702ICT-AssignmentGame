@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Dialogue : MonoBehaviour
-{
+public class Dialogue : MonoBehaviour {
     public TextMeshProUGUI textComponent;
     public string[] lines;
     public float textSpeed;
@@ -12,18 +11,14 @@ public class Dialogue : MonoBehaviour
     private int index;
 
 
-    void Start()
-    {
+    void Start() {
         textComponent.text = string.Empty;
         StartDialogue();
     }
 
-    void Update()
-    {
-        if(Input.GetMouseButtonDown(0))
-        {
-            if (textComponent.text == lines[index])
-            {
+    void Update() {
+        if(Input.GetMouseButtonDown(0)) {
+            if (textComponent.text == lines[index]) {
                 NextLine();
             }
             else {
@@ -33,32 +28,26 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-     void StartDialogue()
-    {
+    void StartDialogue() {
         index = 0;
         StartCoroutine(TypeLine());
     }
 
-    IEnumerator TypeLine()
-    {
+    IEnumerator TypeLine() {
         // Type each character 1 by 1
-        foreach (char c in lines[index].ToCharArray())
-        {
+        foreach (char c in lines[index].ToCharArray()) {
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
     }
 
-    void NextLine()
-    {
-        if (index < lines.Length - 1)
-        {
+    void NextLine() {
+        if (index < lines.Length - 1){
             index ++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
         }
-        else
-        {
+        else {
             gameObject.SetActive(false);
         }
     }

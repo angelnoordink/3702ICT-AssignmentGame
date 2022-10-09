@@ -14,6 +14,5 @@ public class LastPositionHandler : MonoBehaviour
 
     void Update(){
         last_position = lastPosition.pos;
-        // Debug.Log("MiniGame count"+miniGameCountSO.minigame_count);
     }
 }

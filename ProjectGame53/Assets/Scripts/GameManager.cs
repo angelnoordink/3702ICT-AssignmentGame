@@ -8,7 +8,6 @@ using TMPro;
 
 public class GameManager : MonoBehaviour {
     bool gameHasEnded = false;
-    // int lives = 3;
 
     [SerializeField] public MiniGameCountSO miniGameCountSO;
     [SerializeField] public LastPosition lastPosition;
@@ -125,9 +124,6 @@ public class GameManager : MonoBehaviour {
     }
 
     void Restart(){
-        // if (introDialogue.activeSelf){
-        //     introDialogue.SetActive(false);
-        // 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -149,6 +145,5 @@ public class GameManager : MonoBehaviour {
         string timeString = duration.Minutes.ToString() + ":" + duration.Seconds.ToString();
         timeText.text = "Elapsed time: " + timeString;
     }
-
 
 }

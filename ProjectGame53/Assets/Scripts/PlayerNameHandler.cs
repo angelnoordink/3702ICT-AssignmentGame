@@ -9,7 +9,6 @@ public class PlayerNameHandler : MonoBehaviour {
     public string name = "";
     [SerializeField] public NameTracking nameTracking;
 
-
     void Start(){
         DontDestroyOnLoad(gameObject);
     }

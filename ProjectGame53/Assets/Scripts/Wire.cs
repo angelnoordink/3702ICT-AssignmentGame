@@ -6,10 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 
-
-
 public class Wire : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler  {
-
     // Create connect audio and failure audio
    [SerializeField]
     private AudioClip _connectClip;
@@ -19,7 +16,6 @@ public class Wire : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     // Initialise audio source
     private AudioSource _audioSource;
 
-    
     public bool IsLeftWire;
     public Color CustomColor;
 
@@ -32,10 +28,8 @@ public class Wire : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     private WireTask _wireTask;
     public bool IsSuccess = false;
 
-    
 
-    private void Awake()
-    {
+    private void Awake() {
         _image = GetComponent<Image>();
         _lineRenderer = GetComponent<LineRenderer>();
         _canvas = GetComponentInParent<Canvas>();
@@ -43,8 +37,7 @@ public class Wire : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     }
 
     // Update is called once per frame
-    private void Update()
-    {
+    private void Update() {
         if(_isDragStarted) {
             Debug.Log("Moving");
             Vector2 movePos;
@@ -62,7 +55,6 @@ public class Wire : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                 _lineRenderer.SetPosition(0, Vector3.zero);
                 _lineRenderer.SetPosition(1, Vector3.zero);
             }
-     
         }
 
         bool isHovered = RectTransformUtility.RectangleContainsScreenPoint(transform as RectTransform, Input.mousePosition, _canvas.worldCamera);
@@ -72,8 +64,7 @@ public class Wire : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         }    
     }
 
-    public void SetColor(Color color)
-    {
+    public void SetColor(Color color) {
         _image.color = color;
         _lineRenderer.startColor = color;
         _lineRenderer.endColor = color;
@@ -84,8 +75,7 @@ public class Wire : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         // This is never used but is needed for drag to prevent error
     }
 
-    
-    public void OnBeginDrag(PointerEventData eventData){
+    public void OnBeginDrag(PointerEventData eventData) {
         if(!IsLeftWire) {
             return;
         }
@@ -96,7 +86,7 @@ public class Wire : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         _wireTask.CurrentDraggedWire = this;
     }
 
-    public void OnEndDrag(PointerEventData eventData){
+    public void OnEndDrag(PointerEventData eventData) {
         if(_wireTask.CurrentHoveredWire != null){
             if(_wireTask.CurrentHoveredWire.CustomColor == CustomColor && !_wireTask.CurrentHoveredWire.IsLeftWire) {
                 IsSuccess = true;
@@ -105,14 +95,13 @@ public class Wire : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                 // On fail play sound and reload the game
                 Debug.Log("First else");
                 StartCoroutine(fail());
-                //SceneManager.LoadSceneAsync("WireGame");
             }
         }
         _isDragStarted = false;
         _wireTask.CurrentDraggedWire = null;
     }
 
-    IEnumerator fail(){
+    IEnumerator fail() {
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = _failClip;
         _audioSource.Play();

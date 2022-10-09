@@ -9,9 +9,6 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] public NameTracking nameTracking;
     [SerializeField] public bool fromMainMenu;
 
-    // [SerializeField] public TextMeshProUGUI playerName;
-
-
     public void LoadLevel (string levelName) {
         // This will load another scene and takes parameter index of scene or string name
         SceneManager.LoadScene(levelName);
@@ -22,9 +19,6 @@ public class MainMenu : MonoBehaviour {
 
     public void ReadStringInput(string s){
         nameTracking.name = s;
-        
-        Debug.Log(nameTracking.name);
-
     }
 
 
