@@ -2626,7 +2626,7 @@ MonoBehaviour:
   _musicClip: {fileID: 8300000, guid: 2fad6b5e5f453467d88fcbf307b81d9f, type: 3}
   _completeClip: {fileID: 8300000, guid: 7cee228e3d430fd45a98ffb99c2c6f8e, type: 3}
   _failClip: {fileID: 8300000, guid: 3f54be1e78029384b9c71bcf8374febb, type: 3}
-  Game: 
+  Game: SuccessScene
   buttons:
   - {fileID: 62282820}
   - {fileID: 1102159492}
@@ -2639,6 +2639,7 @@ MonoBehaviour:
   - {fileID: 944807757}
   - {fileID: 1616046066}
   shuffledButtons: []
+  miniGameCountSO: {fileID: 11400000, guid: 75e9bdbc4d4c4403a9eec7f7fbc1aef2, type: 2}
 --- !u!82 &1907797372
 AudioSource:
   m_ObjectHideFlags: 0
