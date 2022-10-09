@@ -9,7 +9,43 @@ public class GameManager : MonoBehaviour {
     // int lives = 3;
     [SerializeField] private GameObject introDialogue;
 
-    
+    [SerializeField] public MiniGameCountSO miniGameCountSO;
+
+    [SerializeField] public LastPosition lastPosition;
+
+    [SerializeField] public EndTimer endTimer;
+
+    public GameObject TimerHandler;
+
+    public GameObject ThirdPersonController;
+
+    void Start(){
+        
+        if(miniGameCountSO.minigame_count != 0){
+            introDialogue.SetActive(false);
+            
+            ThirdPersonController.transform.position = lastPosition.pos; 
+
+        }
+        else if(miniGameCountSO.minigame_count == 0){
+            ThirdPersonController.transform.position = new Vector3(5.5f, 0.1f, 10.7f);
+
+        }
+        else if(miniGameCountSO.minigame_count == 3){
+
+            endTimer.timer = TimerHandler.timer;
+            if(endTimer.timer > 0){
+                SceneManager.LoadScene("WinOutcome");
+            }
+
+        }
+
+    }
+
+    void Update(){
+        lastPosition.pos = ThirdPersonController.transform.position;
+    }
+
     public void EndGame() {
         // Debug.Log(lives);
         if (gameHasEnded == false) {
@@ -24,6 +60,12 @@ public class GameManager : MonoBehaviour {
         // if (introDialogue.activeSelf){
         //     introDialogue.SetActive(false);
         // }
+
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+
+
+
     }
 }

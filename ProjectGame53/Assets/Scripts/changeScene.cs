@@ -10,6 +10,11 @@ public class changeScene : MonoBehaviour {
     private bool EnteredCollider = false;
     private string CurrentMinigame;
 
+    [SerializeField] public LastPosition lastPosition;
+
+
+    public GameObject ThirdPersonController;
+
     private void OnTriggerStay(Collider other) {
         if(other.CompareTag("Player")) {
             // Make a UI Appear
@@ -29,8 +34,12 @@ public class changeScene : MonoBehaviour {
     private void Update(){
         if (EnteredCollider == true && Input.GetKeyDown("j")) {
             Debug.Log(CurrentMinigame);
-            SceneManager.LoadScene(CurrentMinigame, LoadSceneMode.Single);
-            Debug.Log("J key was pressed.");
+            lastPosition.pos = ThirdPersonController.transform.position;
+            if(lastPosition.pos == ThirdPersonController.transform.position){
+                SceneManager.LoadScene(CurrentMinigame, LoadSceneMode.Single);
+                Debug.Log("J key was pressed.");
+            }
+
         }
     }
     
