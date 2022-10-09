@@ -4,7 +4,7 @@ using UnityEngine;
 public class EndTimer : ScriptableObject
 {
 
-    public int timer = 0;
+    public float timer = 0;
 
 
 }
