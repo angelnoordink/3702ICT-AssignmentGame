@@ -20082,6 +20082,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Minigame: WireGame
   uiElement: {fileID: 611084508}
+  lastPosition: {fileID: 11400000, guid: 94d97ca8a519348e5873915b1511146e, type: 2}
+  ThirdPersonController: {fileID: 1832634699}
 --- !u!1001 &460263652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26034,6 +26036,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Minigame: QuizGame
   uiElement: {fileID: 2101660288}
+  lastPosition: {fileID: 11400000, guid: 94d97ca8a519348e5873915b1511146e, type: 2}
+  ThirdPersonController: {fileID: 1832634699}
 --- !u!65 &623787734
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -86316,6 +86320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Minigame: CodeGame
   uiElement: {fileID: 1262060497}
+  lastPosition: {fileID: 11400000, guid: 94d97ca8a519348e5873915b1511146e, type: 2}
+  ThirdPersonController: {fileID: 1832634699}
 --- !u!65 &1963845078
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -92823,6 +92829,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   introDialogue: {fileID: 1874212343}
+  miniGameCountSO: {fileID: 11400000, guid: 75e9bdbc4d4c4403a9eec7f7fbc1aef2, type: 2}
+  lastPosition: {fileID: 11400000, guid: 94d97ca8a519348e5873915b1511146e, type: 2}
+  ThirdPersonController: {fileID: 1832634699}
 --- !u!4 &2109443438
 Transform:
   m_ObjectHideFlags: 0
