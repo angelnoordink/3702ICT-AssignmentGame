@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] public LastPosition lastPosition;
 
+    [SerializeField] public EndTimer endTimer;
+
+    public GameObject TimerHandler;
+
     public GameObject ThirdPersonController;
 
     void Start(){
@@ -23,9 +27,17 @@ public class GameManager : MonoBehaviour {
             ThirdPersonController.transform.position = lastPosition.pos; 
 
         }
-        else if(miniGameCountSO.minigame_count != 0){
-
+        else if(miniGameCountSO.minigame_count == 0){
             ThirdPersonController.transform.position = new Vector3(5.5f, 0.1f, 10.7f);
+
+        }
+        else if(miniGameCountSO.minigame_count == 3){
+
+            endTimer.timer = TimerHandler.timer;
+            if(endTimer.timer > 0){
+                SceneManager.LoadScene("WinOutcome");
+            }
+
         }
 
     }
