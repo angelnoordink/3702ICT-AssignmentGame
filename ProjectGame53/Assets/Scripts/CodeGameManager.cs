@@ -22,6 +22,9 @@ public class CodeGameManager : MonoBehaviour
     public List<Button> shuffledButtons;
     int counter = 0;
 
+    [SerializeField]
+    public MiniGameCountSO miniGameCountSO;
+
 
     void Start()
     {
@@ -82,6 +85,7 @@ public class CodeGameManager : MonoBehaviour
 
         } else {
             // Change the scene if win = true 
+            miniGameCountSO.minigame_count += 1;
             StartCoroutine(success());
 
         }
