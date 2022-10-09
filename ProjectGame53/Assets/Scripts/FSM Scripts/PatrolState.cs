@@ -44,7 +44,7 @@ public class PatrolState : StateMachineBehaviour {
         view = animator.GetComponent<FieldOfView>();
         agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
 
-        Debug.Log(animator.transform.name);
+        // Debug.Log(animator.transform.name);
 
     }
 
