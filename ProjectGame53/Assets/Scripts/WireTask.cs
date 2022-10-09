@@ -94,7 +94,7 @@ public class WireTask : MonoBehaviour {
                 _audioSource.Play();
                 _audioSource.loop = false;
                 yield return new WaitWhile (()=>_audioSource.isPlaying);
-                SceneManager.LoadSceneAsync("WinOutcome");
+                SceneManager.LoadSceneAsync("SuccessScene");
             } else {
                 Debug.Log("Mini game completed");
                 _audioSource = GetComponent<AudioSource>();

@@ -45,11 +45,8 @@ public class CodeGameManager : MonoBehaviour
             shuffledButtons[i - 1].GetComponentInChildren<Text>().text = i.ToString(); 
             shuffledButtons[i - 1].interactable = true; // Can press button 
             shuffledButtons[i - 1].image.color = new Color32(128, 128, 128, 255); // Set default colour to grey
-
         }
-
     }
-
 
     public void pressButton(Button button){
         if(int.Parse(button.GetComponentInChildren<Text>().text) - 1 == counter){
@@ -68,7 +65,6 @@ public class CodeGameManager : MonoBehaviour
     }
 
     public IEnumerator presentResult(bool win){
-
         if(!win)
         {
             foreach(var button in shuffledButtons){
@@ -80,20 +76,11 @@ public class CodeGameManager : MonoBehaviour
              yield return new WaitForSeconds(2f);
             // RestartTheGame();
             StartCoroutine(fail());
-
-
         } else {
-            // Change the scene if win = true 
-            //miniGameCountSO.minigame_count += 1;
-            //Debug.Log(miniGameCountSO.minigame_count);
+            // Execute win condition 
             StartCoroutine(success());
-
         }
-
     }
-
-
-
         IEnumerator success(){
             miniGameCountSO.minigame_count += 1;
             if(miniGameCountSO.minigame_count == 3){
@@ -102,7 +89,7 @@ public class CodeGameManager : MonoBehaviour
                 _audioSource.clip = _completeClip;
                 _audioSource.Play();
                 yield return new WaitWhile (()=>_audioSource.isPlaying);
-                SceneManager.LoadSceneAsync("WinOutcome");
+                SceneManager.LoadSceneAsync("SuccessScene");
             } else {
                 Debug.Log("Mini game completed");
                 _audioSource = GetComponent<AudioSource>();
@@ -110,10 +97,7 @@ public class CodeGameManager : MonoBehaviour
                 _audioSource.Play();
                 yield return new WaitWhile (()=>_audioSource.isPlaying);
                 SceneManager.LoadSceneAsync("SuccessScene");
-            }
-            
-            
-        
+            }   
     }
 
       IEnumerator fail(){
@@ -124,9 +108,6 @@ public class CodeGameManager : MonoBehaviour
         yield return new WaitWhile (()=>_audioSource.isPlaying);
         RestartTheGame();
     }
-
-
-
 
     void Update()
     {
