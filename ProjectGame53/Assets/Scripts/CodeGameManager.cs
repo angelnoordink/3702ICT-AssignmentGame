@@ -25,6 +25,9 @@ public class CodeGameManager : MonoBehaviour
     [SerializeField]
     public MiniGameCountSO miniGameCountSO;
 
+    [SerializeField]
+    public LastPosition lastPosition;
+
 
     void Start()
     {
@@ -82,7 +85,9 @@ public class CodeGameManager : MonoBehaviour
         }
     }
         IEnumerator success(){
+            Debug.Log(miniGameCountSO.minigame_count);
             miniGameCountSO.minigame_count += 1;
+            Debug.Log(miniGameCountSO.minigame_count);
             if(miniGameCountSO.minigame_count == 3){
                 Debug.Log("Game Completed");
                 _audioSource = GetComponent<AudioSource>();

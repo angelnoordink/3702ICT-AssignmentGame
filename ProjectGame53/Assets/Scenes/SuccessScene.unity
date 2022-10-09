@@ -889,6 +889,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1837cb2163baa4296bdfec5cc221dc53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  miniGameCountSO: {fileID: 11400000, guid: 75e9bdbc4d4c4403a9eec7f7fbc1aef2, type: 2}
+  nameTracking: {fileID: 11400000, guid: c67b40403387c4233b3c12c6cfd90883, type: 2}
+  fromMainMenu: 0
 --- !u!4 &1197459716
 Transform:
   m_ObjectHideFlags: 0

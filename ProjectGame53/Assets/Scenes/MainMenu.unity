@@ -1432,6 +1432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniGameCountSO: {fileID: 11400000, guid: 75e9bdbc4d4c4403a9eec7f7fbc1aef2, type: 2}
   nameTracking: {fileID: 11400000, guid: c67b40403387c4233b3c12c6cfd90883, type: 2}
+  fromMainMenu: 1
 --- !u!4 &868958945
 Transform:
   m_ObjectHideFlags: 0
@@ -2848,16 +2849,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1930141242}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
+      - m_Target: {fileID: 868958944}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Library
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2069572402

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bdce32d6fd274e0283350b7d9a7f26c, type: 3}
   m_Name: MiniGameCountSO
   m_EditorClassIdentifier: 
- 
+  minigame_count: 0
