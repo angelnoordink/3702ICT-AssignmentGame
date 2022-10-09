@@ -33,8 +33,6 @@ public class WireTask : MonoBehaviour {
     [SerializeField]
     public MiniGameCountSO miniGameCountSO;
 
-
-
     // Start is called before the first frame update
     private void Start() {
 
@@ -43,10 +41,6 @@ public class WireTask : MonoBehaviour {
         _audioSource.Play();
         _audioSource.loop = true;
         
-   
-        
-        
-
         _availableColors = new List<Color>(_wireColors); // Assign new list of colors
         _availableLeftWireIndex = new List<int>(); // This list will contain numbers for the total count of the wires
         _availableRightWireIndex = new List<int>();
@@ -82,44 +76,34 @@ public class WireTask : MonoBehaviour {
             }
         }
         if(successfulWires >= _rightWires.Count) {
-            Debug.Log("TASK COMPLETE");
-
-            // Increment count of mini games completed
-            miniGameCountSO.minigame_count += 1;
-            
-            // If 3 mini-games have been completed display the end success scene
-            if(miniGameCountSO.minigame_count == 3){
-                StartCoroutine(gameComplete());
-            } else {
-                StartCoroutine(success());
-                this.enabled = false;
-            }
-            
+            Debug.Log("Wire mini-game complete");
+            StartCoroutine(success());
+            this.enabled = false;
         } else {
-            //Debug.Log("TASK FAILED");
+            // Keep checking for completion
         }
     }
-
+    
+// Successful completion of mini game function
     IEnumerator success(){
-        
-        _audioSource = GetComponent<AudioSource>();
-        _audioSource.clip = _connectClip;
-        _audioSource.Play();
-        _audioSource.loop = false;
-        yield return new WaitWhile (()=>_audioSource.isPlaying);
-        SceneManager.LoadSceneAsync("SuccessScene");
+        miniGameCountSO.minigame_count += 1;
+        if(miniGameCountSO.minigame_count == 3){
+                Debug.Log("Game Completed");
+                _audioSource = GetComponent<AudioSource>();
+                _audioSource.clip = _connectClip;
+                _audioSource.Play();
+                _audioSource.loop = false;
+                yield return new WaitWhile (()=>_audioSource.isPlaying);
+                SceneManager.LoadSceneAsync("SuccessScene");
+            } else {
+                Debug.Log("Mini game completed");
+                _audioSource = GetComponent<AudioSource>();
+                _audioSource.clip = _connectClip;
+                _audioSource.Play();
+                _audioSource.loop = false;
+                yield return new WaitWhile (()=>_audioSource.isPlaying);
+                SceneManager.LoadSceneAsync("SuccessScene");
+            }
     }
-
-    IEnumerator gameComplete(){
-        
-        _audioSource = GetComponent<AudioSource>();
-        _audioSource.clip = _connectClip;
-        _audioSource.Play();
-        _audioSource.loop = false;
-        yield return new WaitWhile (()=>_audioSource.isPlaying);
-        SceneManager.LoadSceneAsync("EndScene");
-    }
-
-
 }
 

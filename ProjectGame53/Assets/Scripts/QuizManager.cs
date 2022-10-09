@@ -4,11 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class QuizManager : MonoBehaviour
-{
-    [SerializeField]
-    private AudioClip _correctClip;
-    private AudioSource _audioSource;
+public class QuizManager : MonoBehaviour {
+    
     
     [SerializeField] private string Game;
 
@@ -26,9 +23,7 @@ public class QuizManager : MonoBehaviour
     public MiniGameCountSO miniGameCountSO;
 
 
-
-    private void Start()
-    {
+    private void Start() {
         trigger_counter++;
         if (trigger_counter != 1)
         {
@@ -40,21 +35,18 @@ public class QuizManager : MonoBehaviour
 
     }
 
-    public void correct()
-    {
+    public void correct() {
         QnA.RemoveAt(currentQuestion);
         generateQuestion();
     }
 
-    public void incorrect()
-    {
+    public void incorrect() {
         // Play sound and reload scene on failure
 
         SceneManager.LoadSceneAsync("QuizGame");
     }
 
-    void SetAnswers()
-    {
+    void SetAnswers() {
         for (int i = 0; i < options.Length; i++)
         {
             options[i].GetComponent<AnswerScript>().isCorrect = false;
@@ -69,8 +61,7 @@ public class QuizManager : MonoBehaviour
 
     
 
-    void generateQuestion()
-    {
+    void generateQuestion() {
         if(QnA.Count != 0)
         {
             currentQuestion = Random.Range(0, QnA.Count);
@@ -81,9 +72,9 @@ public class QuizManager : MonoBehaviour
         }
         else 
         {
-            SceneManager.LoadSceneAsync("SuccessScene");
             miniGameCountSO.minigame_count += 1;
-            Debug.Log(miniGameCountSO.minigame_count);
+            SceneManager.LoadSceneAsync("SuccessScene");
+
         }
 
     }
