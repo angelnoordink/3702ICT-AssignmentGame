@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] public MiniGameCountSO miniGameCountSO;
     [SerializeField] public NameTracking nameTracking;
 
-    [SerializeField] public TextMeshProUGUI playerName; 
+    // [SerializeField] public TextMeshProUGUI playerName; 
 
     private string playerNameString;
 
@@ -17,9 +17,6 @@ public class MainMenu : MonoBehaviour {
         // This will load another scene and takes parameter index of scene or string name
         SceneManager.LoadScene(levelName);
         miniGameCountSO.minigame_count = 0;
-
-
-        
 
     }
 
