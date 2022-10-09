@@ -30,7 +30,8 @@ public class WireTask : MonoBehaviour {
 
     private List<int> _availableRightWireIndex; // Unitialised list of numbers which will assist in random sequence generation
 
-
+    [SerializeField]
+    public MiniGameCountSO miniGameCountSO;
 
     // Start is called before the first frame update
     private void Start() {
@@ -82,12 +83,16 @@ public class WireTask : MonoBehaviour {
             Debug.Log("TASK COMPLETE");
             StartCoroutine(success());
             this.enabled = false;
+            miniGameCountSO.minigame_count += 1;
+            Debug.Log(miniGameCountSO.minigame_count);
+
         } else {
             //Debug.Log("TASK FAILED");
         }
     }
 
     IEnumerator success(){
+        
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = _connectClip;
         _audioSource.Play();
