@@ -59,7 +59,6 @@ public class CodeGameManager : MonoBehaviour
 
             if(counter==10){
                 StartCoroutine(presentResult(true));
-
             }
 
         } else {
@@ -85,8 +84,8 @@ public class CodeGameManager : MonoBehaviour
 
         } else {
             // Change the scene if win = true 
-            miniGameCountSO.minigame_count += 1;
-            Debug.Log(miniGameCountSO.minigame_count);
+            //miniGameCountSO.minigame_count += 1;
+            //Debug.Log(miniGameCountSO.minigame_count);
             StartCoroutine(success());
 
         }
@@ -96,14 +95,29 @@ public class CodeGameManager : MonoBehaviour
 
 
         IEnumerator success(){
-        _audioSource = GetComponent<AudioSource>();
-        _audioSource.clip = _completeClip;
-        _audioSource.Play();
-        yield return new WaitWhile (()=>_audioSource.isPlaying);
-        SceneManager.LoadSceneAsync("SuccessScene");
+            miniGameCountSO.minigame_count += 1;
+            if(miniGameCountSO.minigame_count == 3){
+                Debug.Log("Game Completed");
+                _audioSource = GetComponent<AudioSource>();
+                _audioSource.clip = _completeClip;
+                _audioSource.Play();
+                yield return new WaitWhile (()=>_audioSource.isPlaying);
+                SceneManager.LoadSceneAsync("EndScene");
+            } else {
+                Debug.Log("Mini game completed");
+                _audioSource = GetComponent<AudioSource>();
+                _audioSource.clip = _completeClip;
+                _audioSource.Play();
+                yield return new WaitWhile (()=>_audioSource.isPlaying);
+                SceneManager.LoadSceneAsync("SuccessScene");
+            }
+            
+            
+        
     }
 
       IEnumerator fail(){
+         Debug.Log("Mini Game Failed");
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = _failClip;
         _audioSource.Play();

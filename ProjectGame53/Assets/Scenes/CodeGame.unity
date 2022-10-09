@@ -2626,7 +2626,7 @@ MonoBehaviour:
   _musicClip: {fileID: 8300000, guid: 2fad6b5e5f453467d88fcbf307b81d9f, type: 3}
   _completeClip: {fileID: 8300000, guid: 7cee228e3d430fd45a98ffb99c2c6f8e, type: 3}
   _failClip: {fileID: 8300000, guid: 3f54be1e78029384b9c71bcf8374febb, type: 3}
-  Game: 
+  Game: SuccessScene
   buttons:
   - {fileID: 62282820}
   - {fileID: 1102159492}

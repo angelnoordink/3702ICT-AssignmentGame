@@ -33,6 +33,8 @@ public class WireTask : MonoBehaviour {
     [SerializeField]
     public MiniGameCountSO miniGameCountSO;
 
+
+
     // Start is called before the first frame update
     private void Start() {
 
@@ -81,11 +83,18 @@ public class WireTask : MonoBehaviour {
         }
         if(successfulWires >= _rightWires.Count) {
             Debug.Log("TASK COMPLETE");
-            StartCoroutine(success());
-            this.enabled = false;
-            miniGameCountSO.minigame_count += 1;
-            Debug.Log(miniGameCountSO.minigame_count);
 
+            // Increment count of mini games completed
+            miniGameCountSO.minigame_count += 1;
+            
+            // If 3 mini-games have been completed display the end success scene
+            if(miniGameCountSO.minigame_count == 3){
+                StartCoroutine(gameComplete());
+            } else {
+                StartCoroutine(success());
+                this.enabled = false;
+            }
+            
         } else {
             //Debug.Log("TASK FAILED");
         }
@@ -99,6 +108,16 @@ public class WireTask : MonoBehaviour {
         _audioSource.loop = false;
         yield return new WaitWhile (()=>_audioSource.isPlaying);
         SceneManager.LoadSceneAsync("SuccessScene");
+    }
+
+    IEnumerator gameComplete(){
+        
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = _connectClip;
+        _audioSource.Play();
+        _audioSource.loop = false;
+        yield return new WaitWhile (()=>_audioSource.isPlaying);
+        SceneManager.LoadSceneAsync("EndScene");
     }
 
 
