@@ -2622,6 +2622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783ba04e730c24446a47749957581d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Game: 
   buttons:
   - {fileID: 62282820}
   - {fileID: 1102159492}
@@ -2634,6 +2635,7 @@ MonoBehaviour:
   - {fileID: 944807757}
   - {fileID: 1616046066}
   shuffledButtons: []
+  miniGameCountSo: {fileID: 11400000, guid: 75e9bdbc4d4c4403a9eec7f7fbc1aef2, type: 2}
 --- !u!1 &2093564089
 GameObject:
   m_ObjectHideFlags: 0

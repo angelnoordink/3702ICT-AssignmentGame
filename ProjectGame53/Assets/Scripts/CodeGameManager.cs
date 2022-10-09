@@ -13,6 +13,8 @@ public class CodeGameManager : MonoBehaviour
     public List<Button> shuffledButtons;
     int counter = 0;
 
+    public MiniGameCountSO miniGameCountSo;
+
 
     void Start()
     {
@@ -65,6 +67,7 @@ public class CodeGameManager : MonoBehaviour
 
         } else {
             // Change the scene if win = true 
+            miniGameCountSo.minigame_count += 1;
             SceneManager.LoadSceneAsync("Library");
 
         }
@@ -72,15 +75,4 @@ public class CodeGameManager : MonoBehaviour
 
     }
 
-
-
-
-
-
-
-
-    void Update()
-    {
-        
-    }
 }
